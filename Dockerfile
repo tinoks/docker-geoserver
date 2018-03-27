@@ -1,6 +1,6 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
 FROM tomcat:8.0-jre8
-MAINTAINER Tim Sutton<tim@linfiniti.com>
+MAINTAINER Tino Kastbjerg Stigsen<tinoks@gmail.com.com>
 
 RUN  export DEBIAN_FRONTEND=noninteractive
 ENV  DEBIAN_FRONTEND noninteractive
@@ -14,7 +14,7 @@ RUN apt-get install -y  fonts-cantarell lmodern ttf-aenigma ttf-georgewilliams t
     build-essential libapr1-dev libssl-dev default-jdk
 #-------------Application Specific Stuff ----------------------------------------------------
 
-ENV GS_VERSION 2.12.1
+ENV GS_VERSION 2.13.x
 ENV GEOSERVER_DATA_DIR /opt/geoserver/data_dir
 
 ENV GEOSERVER_OPTS "-Djava.awt.headless=true -server -Xms2G -Xmx4G -Xrs -XX:PerfDataSamplingInterval=500 \
@@ -121,7 +121,7 @@ WORKDIR $CATALINA_HOME
 # A little logic that will fetch the geoserver war zip file if it
 # is not available locally in the resources dir
 RUN if [ ! -f /tmp/resources/geoserver-${GS_VERSION}.zip ]; then \
-    wget -c http://downloads.sourceforge.net/project/geoserver/GeoServer/${GS_VERSION}/geoserver-${GS_VERSION}-war.zip \
+    wget -c https://build.geoserver.org/geoserver/${GS_VERSION}/geoserver-${GS_VERSION}-war.zip \
       -O /tmp/resources/geoserver-${GS_VERSION}.zip; \
     fi; \
     unzip /tmp/resources/geoserver-${GS_VERSION}.zip -d /tmp/geoserver \
