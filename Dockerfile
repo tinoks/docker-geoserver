@@ -121,7 +121,7 @@ WORKDIR $CATALINA_HOME
 # A little logic that will fetch the geoserver war zip file if it
 # is not available locally in the resources dir
 RUN if [ ! -f /tmp/resources/geoserver-${GS_VERSION}.zip ]; then \
-    wget -c https://build.geoserver.org/geoserver/${GS_VERSION}/geoserver-${GS_VERSION}-war.zip \
+    wget -c https://build.geoserver.org/geoserver/${GS_VERSION}/geoserver-${GS_VERSION}-latest-war.zip \
       -O /tmp/resources/geoserver-${GS_VERSION}.zip; \
     fi; \
     unzip /tmp/resources/geoserver-${GS_VERSION}.zip -d /tmp/geoserver \
